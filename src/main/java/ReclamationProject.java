@@ -8,19 +8,36 @@
  * 5. Remove unnecessary comments as appropriate
  */
 
-public class ReclamationProject
-{
-    static String doit(String a,String b){
-        if (a.length() > b.length()){
-            String c = a; // TODO: set c to a
-            a=b; b=c;}
-        String r = (a.equals(b)) ? "" : ""; // I love the ternary operator!
-        /*
-         * For loop with i
-         */
-        for (int i = 0; i < a.length(); i++) { for (int j = a.length() - i; j > 0; j--) {
-                for (int k = 0; k < b.length()- j; k++) {
-                    r = (a.regionMatches(i, b, k, j) && j >r.length()) ? a.substring(i,i + j) : r; // Do it!
-                        }} // Ah yeah
-        } return r; }
+/**
+ * This thing does a thing to words.
+ */
+public class ReclamationProject {
+    /**
+     *
+     * @param word1 first word being used
+     * @param word2 second word being used
+     * @return r
+     */
+    public static String doit(final String word1, final String word2) {
+        String longWord = word1;
+        String shortWord = word2;
+
+        if (word1.length() > word2.length()) {
+            String temp = longWord;
+            longWord = shortWord;
+            shortWord = temp;
+            }
+        String commonLetters = "";
+
+        for (int i = 0; i < word1.length(); i++) {
+            for (int j = word1.length() - i; j > 0; j--) {
+                for (int k = 0; k < word2.length() - j; k++) {
+                    if (word1.regionMatches(i, word2, k, j) && j > commonLetters.length()) {
+                       commonLetters = word1.substring(i, i + j);
+                    }
+                }
+            }
+        }
+        return commonLetters;
+        }
 }
